@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/error', (req, res) => {
-    chicken.fly()
+    chicken.fly();
 })
 
 
@@ -51,6 +51,15 @@ app.get('/secret', verifyPassword, (req, res) => {
 app.use((req, res) => {
     res.status(404).send('Not Found!');
 })
+app.use((err, req, res, next) => {
+    console.log('****************************')
+    console.log('***********ERROR************')
+    console.log('****************************')
+    // res.status(500).send("OHH BOY! WE GOT AN ERROR!!!!!!!");
+    // console.log(err)
+    next(err)
+})
+
 app.listen(3000, () => {
     console.log('Listening to port 3000!');
 })
