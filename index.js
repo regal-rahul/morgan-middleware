@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     next();
 })
 app.use('/dogs', (req, res, next) => {
-    console.log('Ilove dogs');
+    console.log('I love dogs');
     next();
 })
 const verifyPassword = ((req, res, next) => {
