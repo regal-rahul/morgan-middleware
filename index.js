@@ -1,9 +1,8 @@
 const express = require('express');
-const res = require('express/lib/response');
 const app = express();
 const morgan = require('morgan');
 
-app.use(morgan('dev'));
+app.use(morgan('tiny'));
 
 
 app.use((req, res, next) => {
@@ -20,7 +19,8 @@ const verifyPassword = ((req, res, next) => {
     if (password === 'chickennugget') {
         next();
     } else {
-        res.send('Sorry incorrect password!');
+        // res.send('Sorry incorrect password!')
+        throw new Error('Password required');
     }
 })
 
@@ -30,6 +30,14 @@ app.get('/', (req, res) => {
     console.log(`REQUEST DATE: ${req.requestTime}`);
     res.send('Home Page!');
 })
+
+app.get('/error', (req, res) => {
+    chicken.fly()
+})
+
+
+
+
 app.get('/dogs', (req, res) => {
     console.log(`REQUEST DATE: ${req.requestTime}`);
 
